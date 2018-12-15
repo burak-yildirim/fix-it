@@ -1,0 +1,12 @@
+.brand-font{
+  font-family: 'Fugaz One', cursive;
+}
+
+body {
+  /* background: white url("images/background.jpg"); */
+  color: white;
+}
+
+.bg-black{
+  background: black;
+}

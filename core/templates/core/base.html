@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  {% load staticfiles %}
+
+  <!-- Bootstrap4 Css cdn -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css?family=Fugaz+One" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'core/base.css' %}" />
+  <title>Teknik Servis</title>
+</head>
+
+<body class="bg-dark">
+  {% include 'core/navbar.html' %}
+  <main role="main" class="container">
+    {% block body %}
+    {% endblock %}
+  </main>
+</body>
+
+</html>
