@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from .forms import CheckDeviceForm
 from .models import Device
@@ -15,7 +15,12 @@ class Index(generic.View):
     def post(self, request):
         form = self.form_class(request.POST)
 
-        pass
+        if form.is_valid():
+            id = form.cleaned_data['id']
+            device = Device.objects.get(id=id)
+            if device is not None:
+                return redirect('core:detail', pk=device.id)
+        return render(request, self.template_name, {'form': form})
 
 
 class DeviceView(generic.DetailView):
