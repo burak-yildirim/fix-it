@@ -1,0 +1,10 @@
+.vscode/
+secure_keys.py
+*.pyc
+*.pyo
+media
+db.sqlite3
+local_settings.py
+__pycache__/
+*.log
+*.pot
