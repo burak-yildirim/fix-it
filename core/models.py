@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from string import Template
 
 
@@ -36,3 +37,24 @@ class Device(models.Model):
             "c": str(self.customer),
         }
         return mystr.substitute(words)
+
+
+class Employee(User):
+    REPR = 0  # Stands for customer representative
+    TECH = 1  # Stands for technical service employee
+    EMPLOYEE_TYPE_CHOICES = (
+        (REPR, "Müşteri Temsilcisi"),
+        (TECH, "Teknik Servis Görevlisi")
+    )
+
+    username = models.CharField(
+        "Kullanıcı Adı", blank=True, null=True, unique=True)
+    fullname = models.CharField("Ad Soyad", blank=False, unique=False)
+    email = models.EmailField("Email Adresi", blank=False, unique=True)
+    is_active = models.BooleanField("Aktiflik Durumu", default=False)
+    last_activated = models.DateTimeField(
+        "Son Aktif Edilme Tarihi", blank=True)
+    last_deactivated = models.DateTimeField(
+        "Son Pasif Edilme Tarihi", blank=True)
+    employee_type = models.PositiveSmallIntegerField(
+        choices=EMPLOYEE_TYPE_CHOICES)
