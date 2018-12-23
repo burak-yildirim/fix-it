@@ -4,6 +4,9 @@ from .models import Device
 
 
 class BaseModelForm(forms.ModelForm):
+    """
+    Base form model which adds bootstrap to input fields
+    """
 
     def __init__(self, *args, **kwargs):
         super(BaseModelForm, self).__init__(*args, **kwargs)
