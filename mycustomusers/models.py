@@ -74,7 +74,7 @@ class Employee(AbstractBaseUser):
     objects = EmployeeManager()
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["fullname", "employee_type", "is_active", ]
+    REQUIRED_FIELDS = ["fullname", "employee_type", ]
 
     class Meta:
         verbose_name = "çalışan"
@@ -143,3 +143,9 @@ class Employee(AbstractBaseUser):
             self.activate()
         except Exception as e:
             print(e)
+
+    def is_repr(self):
+        return True if self.employee_type == self.REPR else False
+
+    def is_tech(self):
+        return True if self.employee_type == self.TECH else False
