@@ -1,26 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-black">
-  <a class="navbar-brand brand-font" href="#">FixIt</a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <a class="navbar-brand brand-font" href={% url 'index' %}>FixIt</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
-        >
+        {% if request.user.is_authenticated %}
+        <!-- Logout  -->
+        <a class="nav-link" href="{% url 'mycustomusers:logout' %}">Çıkış Yap</a>
+        {% else %}
+        <!-- Employee login -->
+        <a class="nav-link" href="{% url 'mycustomusers:login' %}">Çalışan Giriş</a>
+        {% endif %}
+
       </li>
-      <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'mycustomusers:redirect' %}">İşlem</a>
+      </li>
     </ul>
-    
+
   </div>
 </nav>
