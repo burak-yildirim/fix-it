@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+
+<h2>Böyle bir cihaz bulunmamaktadır</h2>
+<h5>Lütfen girdiğiniz cihaz numarasını kontrol ediniz.</h5>
+
+
+<button onClick="goToIndex();" class="btn btn-sm btn-primary">Anasayfa</button>
+
+<script>
+    let url = "{% url 'index' %}";
+    function goToIndex() {
+        window.location.replace(url);
+    }
+</script>
+
+{% endblock %}

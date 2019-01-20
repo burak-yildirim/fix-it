@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import generic
+from django.core.exceptions import ObjectDoesNotExist
 from .forms import CheckDeviceForm
 from .models import Device
 
@@ -17,9 +18,13 @@ class Index(generic.View):
 
         if form.is_valid():
             id = form.cleaned_data['id']
-            device = Device.objects.get(id=id)
-            if device is not None:
+            try:
+                device = Device.objects.get(id=id)
                 return redirect('core:detail', pk=device.id)
+            except ObjectDoesNotExist as e:
+                return render(request, "core/device-not-exist.html")
+            except Exception as e:
+                print(e)
         return render(request, self.template_name, {'form': form})
 
 

@@ -5,5 +5,28 @@
 <h3>Müşteri Temsilcisi Kontrol Paneli</h3>
 <p>Hoşgeldiniz {{ request.user.get_short_name }}</p>
 
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Müşteri</th>
+            <th scope="col">Cihaz</th>
+            <th scope="col">Kayıt Tarihi</th>
+            <th scope="col">Tamir Durumu</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for ndx, device in devices %}
+            <th scope="row">{{ ndx|add:"1" }}</th>
+            <td>{{ device.customer.fullname }}</td>
+            <td>{{ device.name }}</td>
+            <td>{{ device.recieved_at }}</td>
+            <td>{{ device.repair_status }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
 
 {% endblock %}

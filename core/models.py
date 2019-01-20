@@ -36,3 +36,8 @@ class Device(models.Model):
             "c": str(self.customer),
         }
         return mystr.substitute(words)
+
+    @property
+    def repair_status(self):
+        ra = self.repaired_at
+        return ra if ra is not None and ra is not "" and ra is not "None" else "Tamir Ediliyor"
