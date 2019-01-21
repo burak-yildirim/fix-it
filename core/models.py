@@ -3,11 +3,11 @@ from string import Template
 
 
 class Customer(models.Model):
-    civil_id = models.IntegerField(unique=True)
-    fullname = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    phone = models.CharField(max_length=20)
-    address = models.CharField(max_length=300)
+    civil_id = models.IntegerField("T.C. No", unique=True)
+    fullname = models.CharField("Tam İsim", max_length=100)
+    email = models.CharField("Email", max_length=100)
+    phone = models.CharField("Telefon", max_length=20)
+    address = models.CharField("Adres", max_length=300)
 
     def __str__(self):
         mystr = Template("$n - $e - $p - $c")
@@ -21,9 +21,10 @@ class Customer(models.Model):
 
 
 class Device(models.Model):
-    name = models.CharField(max_length=100)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    customer_compliant = models.CharField(max_length=500)
+    name = models.CharField("Cihaz Adı", max_length=100)
+    customer = models.ForeignKey(
+        Customer, on_delete=models.CASCADE, verbose_name="Müşteri")
+    customer_compliant = models.CharField("Müşteri Şikayeti", max_length=500)
     recieved_at = models.DateTimeField('Ürün kayıt tarihi', auto_now_add=True)
     repaired_at = models.DateTimeField(
         'Onarılma tarihi', null=True, blank=True)

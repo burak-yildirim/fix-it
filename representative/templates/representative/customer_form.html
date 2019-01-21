@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+{% block body %}
+
+<form action="" class="form-vertical" method="post">
+    {% csrf_token %}
+    {% include "core/formTemplate.html" %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-sm btn-success" type="submit">Müşteri Oluştur</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

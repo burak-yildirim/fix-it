@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% block body %}
+
+<form action="" class="form-vertical" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% include "core/formTemplate.html" %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success btn-sm">Kayıt Oluştur</button>
+        </div>
+    </div>
+</form>
+
+<div name="new_customer">
+    <span>Müşteri sistemde kayıtlı değil mi? Yeni müşteri kaydı oluşturun.</span> <br>
+    <button id="btn_cc" class="btn btn-sm btn-primary" style="margin:15px;">Yeni Müşteri</button>
+</div>
+
+<script>
+    let customerUrl = "{% url 'repr:customer_create' %}";
+    document.getElementById("btn_cc").onclick = () => window.location.replace(customerUrl);
+</script>
+
+{% endblock %}

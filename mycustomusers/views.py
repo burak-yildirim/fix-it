@@ -3,9 +3,9 @@ from django.contrib.auth import (
     views as auth_views,
     login as auth_login,
     logout as auth_logout,
+    forms as auth_forms
 )
 from django.views import generic
-from .forms import CustomAuthenticationForm
 
 
 def redirect_employee(user):
@@ -33,7 +33,7 @@ class LoginView(auth_views.LoginView):
     departments.
     """
     template_name = "mycustomusers/login.html"
-    form_class = CustomAuthenticationForm
+    form_class = auth_forms.AuthenticationForm
 
     def form_valid(self, form):
         """Logs users(employees) in and redirects dynamically"""
