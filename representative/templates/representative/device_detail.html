@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+<div name="index" align="center">
+    <div class="row">
+        <div class="col-sm">Sahibi</div>
+        <div class="col-sm">{{ device.customer.fullname }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Email</div>
+        <div class="col-sm">{{ device.customer.email }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Telefon</div>
+        <div class="col-sm">{{ device.customer.phone }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Cihaz</div>
+        <div class="col-sm">{{ device.name }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Şikayet</div>
+        <div class="col-sm">{{ device.customer_compliant }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Giriş Tarihi</div>
+        <div class="col-sm">{{ device.recieved_at }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Onarım Tarihi</div>
+        <div class="col-sm">{{ device.repaited_at }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Teslim Tarihi</div>
+        <div class="col-sm">{{ device.delivered_at }}</div>
+    </div>
+</div>
+{% endblock %}

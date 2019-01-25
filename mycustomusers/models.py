@@ -144,8 +144,10 @@ class Employee(AbstractBaseUser):
         except Exception as e:
             print(e)
 
+    @property
     def is_repr(self):
         return True if self.employee_type == self.REPR else False
 
+    @property
     def is_tech(self):
         return True if self.employee_type == self.TECH else False

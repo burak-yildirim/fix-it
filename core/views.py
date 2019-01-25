@@ -22,7 +22,7 @@ class Index(generic.View):
                 device = Device.objects.get(id=id)
                 return redirect('core:detail', pk=device.id)
             except ObjectDoesNotExist as e:
-                return render(request, "core/device-not-exist.html")
+                return render(request, "core/device_not_exist.html")
             except Exception as e:
                 print(e)
         return render(request, self.template_name, {'form': form})
@@ -30,4 +30,8 @@ class Index(generic.View):
 
 class DeviceView(generic.DetailView):
     model = Device
-    template_name = "core/deviceDetail.html"
+    template_name = "core/device_detail.html"
+
+
+def not_authorized(request):
+    return render(request, "core/not_authorized.html")

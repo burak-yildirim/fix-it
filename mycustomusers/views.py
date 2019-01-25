@@ -17,9 +17,9 @@ def redirect_employee(user):
     """
     if not user.is_authenticated:
         return redirect("mycustomusers:not_logged_in")
-    elif user.is_repr():
+    elif user.is_repr:
         return redirect("repr:operation_panel")
-    elif user.is_tech():
+    elif user.is_tech:
         return redirect("tech:operation_panel")
     elif user.is_admin:
         return redirect("admin:index")

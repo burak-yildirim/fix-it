@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% block body %}
+
+<div name="index" align="center">
+    <div class="row">
+        <div class="col-sm">İsim</div>
+        <div class="col-sm">{{ customer.fullname }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">T.C. No</div>
+        <div class="col-sm">{{ customer.civil_id }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Email</div>
+        <div class="col-sm">{{ customer.email }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Telefon</div>
+        <div class="col-sm">{{ customer.phone }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm">Adres</div>
+        <div class="col-sm">{{ customer.address }}</div>
+    </div>
+</div>
+
+<h2 style="margin-top:30px; text-align: center;">Sistemde Kayıtlı Cihazlar</h2>
+
+<div name="index" align="center">
+    {% for device in customer.device_set.all %}
+    <div class="row">
+        <div class="col-sm">{{ device.name }}</div>
+        <div class="col-sm">{{ device.repair_status }}</div>
+    </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
