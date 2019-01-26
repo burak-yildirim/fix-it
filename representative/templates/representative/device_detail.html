@@ -4,7 +4,11 @@
 <div name="index" align="center">
     <div class="row">
         <div class="col-sm">Sahibi</div>
-        <div class="col-sm">{{ device.customer.fullname }}</div>
+        <div class="col-sm">
+            <span id="customer" class="span-link" url="{% url 'repr:customer_detail' device.customer.id %}">
+                {{ device.customer.fullname }}
+            </span>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm">Email</div>
@@ -28,11 +32,19 @@
     </div>
     <div class="row">
         <div class="col-sm">Onarım Tarihi</div>
-        <div class="col-sm">{{ device.repaited_at }}</div>
+        <div class="col-sm">{{ device.repaired_at }}</div>
     </div>
     <div class="row">
         <div class="col-sm">Teslim Tarihi</div>
         <div class="col-sm">{{ device.delivered_at }}</div>
     </div>
 </div>
+
+<script>
+    // customer detail
+    let customerSpan = document.getElementById("customer");
+    var url = customerSpan.getAttribute("url");
+    customerSpan.onclick = () => window.location.replace(url);
+</script>
+
 {% endblock %}

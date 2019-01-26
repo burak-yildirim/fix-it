@@ -29,11 +29,24 @@
 <div name="index" align="center">
     {% for device in customer.device_set.all %}
     <div class="row">
-        <div class="col-sm">{{ device.name }}</div>
+        <div class="col-sm">
+            <span class="span-link" name="device" url="{% url 'repr:device_detail' device.id %}">
+                {{ device.name }}
+            </span>
+        </div>
         <div class="col-sm">{{ device.repair_status }}</div>
     </div>
     {% endfor %}
 </div>
 
+<script>
+    // device detail
+    let deviceSpans = document.getElementsByName("device");
+    for (var i = 0; i < deviceSpans.length; i++) {
+        var url = deviceSpans[i].getAttribute("url");
+        deviceSpans[i].onclick = () => window.location.replace(url);
+    }
+
+</script>
 
 {% endblock %}

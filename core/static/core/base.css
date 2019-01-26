@@ -10,3 +10,14 @@ body {
 .bg-black{
   background: black;
 }
+
+.span-link{
+  color: rgb(138, 147, 156);
+}
+
+.span-link:hover{
+  text-decoration: underline;
+  text-decoration-color: cornflowerblue;
+  color: cornflowerblue;
+  cursor: pointer;
+}
