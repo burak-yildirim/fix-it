@@ -39,6 +39,18 @@ class DeviceDetail(generic.DetailView):
         return authorization_required(view)
 
 
+class DeviceUpdate(edit.UpdateView):
+    model = Device
+    template_name = "representative/device_form.html"
+    fields = ["name", "customer", "customer_compliant", ]
+    success_url = reverse_lazy("repr:operation_panel")
+
+    @classonlymethod
+    def as_view(cls, **initkwargs):
+        view = super().as_view(**initkwargs)
+        return authorization_required(view)
+
+
 class CustomerCreate(edit.CreateView):
     model = Customer
     template_name = "representative/customer_form.html"
@@ -54,6 +66,18 @@ class CustomerCreate(edit.CreateView):
 class CustomerDetail(generic.DetailView):
     model = Customer
     template_name = "representative/customer_detail.html"
+
+    @classonlymethod
+    def as_view(cls, **initkwargs):
+        view = super().as_view(**initkwargs)
+        return authorization_required(view)
+
+
+class CustomerUpdate(edit.UpdateView):
+    model = Customer
+    template_name = "representative/customer_form.html"
+    fields = ["civil_id", "fullname", "email", "phone", "address"]
+    success_url = reverse_lazy("repr:create_broken_device")
 
     @classonlymethod
     def as_view(cls, **initkwargs):

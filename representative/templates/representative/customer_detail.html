@@ -22,6 +22,14 @@
         <div class="col-sm">Adres</div>
         <div class="col-sm">{{ customer.address }}</div>
     </div>
+    <div class="row">
+        <div class="col-sm">
+            <button id="updateBtn" url="{% url 'repr:customer_update' customer.id %}" class="btn btn-sm btn-primary">
+                Güncelle
+            </button>
+        </div>
+        <div class="col-sm"></div>
+    </div>
 </div>
 
 <h2 style="margin-top:30px; text-align: center;">Sistemde Kayıtlı Cihazlar</h2>
@@ -37,16 +45,36 @@
         <div class="col-sm">{{ device.repair_status }}</div>
     </div>
     {% endfor %}
+    <div class="row">
+        <div class="col-sm">
+            <button id="createBtn" url="{% url 'repr:device_create' %}?customer={{customer}}" class="btn btn-sm btn-primary">
+                Yeni Cihaz
+            </button>
+        </div>
+        <div class="col-sm"></div>
+    </div>
 </div>
 
 <script>
     // device detail
     let deviceSpans = document.getElementsByName("device");
     for (var i = 0; i < deviceSpans.length; i++) {
-        var url = deviceSpans[i].getAttribute("url");
-        deviceSpans[i].onclick = () => window.location.replace(url);
+        deviceSpans[i].onclick = (function (url) {
+            return function () {
+                window.location.href = url;
+            }
+        })(deviceSpans[i].getAttribute("url"));
     }
 
+</script>
+<script>
+    // update customer button
+    let updateBtn = document.getElementById("updateBtn");
+    updateBtn.onclick = () => window.location.href = updateBtn.getAttribute("url");
+
+    // create new device button
+    let createBtn = document.getElementById("createBtn");
+    createBtn.onclick = () => window.location.href = createBtn.getAttribute("url");
 </script>
 
 {% endblock %}

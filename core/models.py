@@ -41,4 +41,9 @@ class Device(models.Model):
     @property
     def repair_status(self):
         ra = self.repaired_at
-        return ra if ra is not None and ra is not "" and ra is not "None" else "Tamir Ediliyor"
+        return ra if not (ra is None or ra is "" or ra is "None") else "Tamir Ediliyor"
+
+    @property
+    def deliver_status(self):
+        da = self.delivered_at
+        return da if not (da is None or da is "" or da is "None") else "---"

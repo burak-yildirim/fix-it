@@ -21,8 +21,12 @@
         {% for ndx, device in devices %}
         <tr>
             <th scope="row">{{ ndx|add:"1" }}</th>
-            <td>{{ device.customer.fullname }}</td>
-            <td>{{ device.name }}</td>
+            <td><span name="customerSpan" class="span-link" url="{% url 'repr:customer_detail' device.customer.id %}">
+                    {{ device.customer.fullname }}
+                </span></td>
+            <td><span name="deviceSpan" class="span-link" url="{% url 'repr:device_detail' device.id %}">
+                    {{ device.name }}
+                </span></td>
             <td>{{ device.recieved_at }}</td>
             <td>{{ device.repair_status }}</td>
         </tr>
@@ -35,6 +39,26 @@
         let deviceUrl = "{% url 'repr:device_create' %}";
         window.location.replace(deviceUrl);
     };
+</script>
+<script>
+    // assing customer detail links to spans
+    let customerSpans = document.getElementsByName("customerSpan");
+    var i;
+    for (i = 0; i < customerSpans.length; i++) {
+        customerSpans[i].onclick = (function (url) {
+            return function () { window.location.href = url; }
+        })(customerSpans[i].getAttribute("url"));
+    }
+</script>
+<script>
+    // assing device detail links to spans
+    let deviceSpans = document.getElementsByName("deviceSpan");
+    var j;
+    for (j = 0; j < deviceSpans.length; j++) {
+        deviceSpans[j].onclick = (function (url) {
+            return function () { window.location.href = url; }
+        })(deviceSpans[j].getAttribute("url"));
+    }
 </script>
 
 {% endblock %}

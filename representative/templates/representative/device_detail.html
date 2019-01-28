@@ -3,9 +3,13 @@
 {% block body %}
 <div name="index" align="center">
     <div class="row">
+        <div class="col-sm">Cihaz</div>
+        <div class="col-sm">{{ device.name }}</div>
+    </div>
+    <div class="row">
         <div class="col-sm">Sahibi</div>
         <div class="col-sm">
-            <span id="customer" class="span-link" url="{% url 'repr:customer_detail' device.customer.id %}">
+            <span id="customerSpan" class="span-link" url="{% url 'repr:customer_detail' device.customer.id %}">
                 {{ device.customer.fullname }}
             </span>
         </div>
@@ -19,10 +23,6 @@
         <div class="col-sm">{{ device.customer.phone }}</div>
     </div>
     <div class="row">
-        <div class="col-sm">Cihaz</div>
-        <div class="col-sm">{{ device.name }}</div>
-    </div>
-    <div class="row">
         <div class="col-sm">Şikayet</div>
         <div class="col-sm">{{ device.customer_compliant }}</div>
     </div>
@@ -32,19 +32,34 @@
     </div>
     <div class="row">
         <div class="col-sm">Onarım Tarihi</div>
-        <div class="col-sm">{{ device.repaired_at }}</div>
+        <div class="col-sm">{{ device.repair_status }}</div>
     </div>
     <div class="row">
         <div class="col-sm">Teslim Tarihi</div>
-        <div class="col-sm">{{ device.delivered_at }}</div>
+        <div class="col-sm">{{ device.deliver_status }}</div>
+    </div>
+    <div class="row" style="margin-top:20px;">
+        <div class="col-sm">
+            <button id="updateBtn" url="{% url 'repr:device_update' device.id %}" class="btn btn-sm btn-primary">Güncelle</button>
+        </div>
+        <div class="col-sm"></div>
     </div>
 </div>
 
 <script>
     // customer detail
-    let customerSpan = document.getElementById("customer");
-    var url = customerSpan.getAttribute("url");
-    customerSpan.onclick = () => window.location.replace(url);
+    let customerSpan = document.getElementById("customerSpan");
+    customerSpan.onclick = () => {
+        window.location.href = customerSpan.getAttribute("url");
+    }
+</script>
+<script>
+    // update button onclick
+    let updateBtn = document.getElementById("updateBtn");
+    updateBtn.onclick = () => {
+        window.location.href = updateBtn.getAttribute("url");
+    }
+
 </script>
 
 {% endblock %}
